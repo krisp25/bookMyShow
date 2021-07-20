@@ -1,0 +1,35 @@
+Book my show planning
+
+1. We need a reusable carousel 
+    -> Hero carousel
+    -> common carousel
+    -> cast and crew small carousel
+
+2. Pages
+    -> Home Page
+    -> Movie Page
+    -> Categories Page
+    -> Authentication Page
+    -> Razorpay payment gateway
+
+3. Plan (How are we building it)
+    -> Layouts
+    -> Routes
+    -> Pages
+    -> Components
+
+
+Notes:
+Layouts -> 
+Components -> Independent and reusable bits of code
+    Takes props and state and returns JSX code
+HOC (Higher Order Components) -> Component which returns a component (class/function components)
+
+Layout-first Approach -> 
+You make the skeleton/layout of the app and update only the contents inside the layout
+i.e. layout remains as a default or static element of the app which doesn't change after being rendered once
+How to make changes in layout ->
+    -> Using props (if you've limited changes)
+    -> Making different layout and components for different pages (if you've lots of changes)
+
+
