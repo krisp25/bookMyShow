@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HeroSlider from "react-slick";
-
+import axios from "axios";
 
 // Import css files
 import "slick-carousel/slick/slick.css";
@@ -10,6 +10,18 @@ import "slick-carousel/slick/slick-theme.css";
 import { NextArrow, PrevArrow } from "./Arrows.components";
 
 const HeroCarousel = () => {
+
+    const [images, setImages] = useState([]);
+
+    useEffect(() => {
+        // async call
+        const requestNowPlayingMovies = async () => {
+            const getImages = await axios.get("/movie/now_playing");
+            setImages(getImages.data.results);
+        };
+        requestNowPlayingMovies();
+    }, []);
+
     const settingsLG = {
         arrows: true,
         autoplay: true,
@@ -22,19 +34,11 @@ const HeroCarousel = () => {
 
     const settings = {
         arrows: true,
-        dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1
     };
-    
-    const images = [
-        "https://in.bmscdn.com/promotions/cms/creatives/1626065541062_spanishbundle1280x500ios.jpg",
-        "https://in.bmscdn.com/promotions/cms/creatives/1625077257492_dearishqafestivalofkisseykahaniyaanpoetry_webshowcase_1280x500.jpg",
-        "https://in.bmscdn.com/promotions/cms/creatives/1625559912123_bsm_1280x500_chickflick.jpg",
-        "https://in.bmscdn.com/promotions/cms/creatives/1625135512787_bas_1280x500.jpg",
-    ];
 
     return (
         <>
@@ -42,7 +46,7 @@ const HeroCarousel = () => {
                 <HeroSlider {...settings}>
                     {images.map((image) => (
                         <div className="w-20 h-100 py-3">
-                            <img src={image} alt="testing" className="w-full h-full" />
+                            <img src={`https://image.tmdb.org/t/p/original${image.backdrop_path}`} alt="testing" className="w-full h-full" />
                         </div>
                     ))}
                 </HeroSlider>
@@ -51,8 +55,8 @@ const HeroCarousel = () => {
             <div className="hidden lg:block">
                 <HeroSlider {...settingsLG}>
                     {images.map((image) => (
-                        <div className="w-20 h-100 px-2 py-3">
-                            <img src={image} alt="testing" className="w-full h-full rounded-md" />
+                        <div className="w-20 h-90 px-2 py-3">
+                            <img src={`https://image.tmdb.org/t/p/original${image.backdrop_path}`} alt="testing" className="w-full h-full rounded-md" />
                         </div>
                     ))}
                 </HeroSlider>

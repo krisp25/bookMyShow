@@ -8,6 +8,8 @@ import Slider from 'react-slick';
 import PosterCarouselSettings from "../../config/PosterCarousel.config"
 
 export const PosterSlider = (props) => {
+
+    const sliderConfig = props.config ? props.config : PosterCarouselSettings;
     return (
         <>
             <div className="flex flex-col items-start px-3">
@@ -18,7 +20,7 @@ export const PosterSlider = (props) => {
                         props.isDark ? "text-white" : "text-gray-700"
                     }`}>{props.subtitle}</p>
             </div>
-            <Slider {...PosterCarouselSettings} className="py-6">
+            <Slider {...sliderConfig} className="py-6">
                 {props.images.map((image) => (
                     <Poster {...image} isDark={props.isDark} />
                 ))}
